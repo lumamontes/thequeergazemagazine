@@ -11,7 +11,18 @@ module.exports = {
       fontSize: {
         12: '12px',
       },
+      fontFamily: {
+        sans: ['var(--font-sans)'],
+        cursive: ['var(--font-milonga)'],
+      },
       colors: {
+        'pink-site': '#ED5EDD',
+        'yellow-site': '#F2E947',
+        'lightgreen-site': '#8BDB81',
+        'red-site': '#F72834',
+        'white-site': '#EEEEEE',
+        'darkyellow-site': '#FFBB30',
+        'green-site': '#43AF1C',
         'purple-site': '#8751BD',
         'blue-site': '#2859B6',
       },

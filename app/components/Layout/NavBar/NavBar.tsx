@@ -13,66 +13,74 @@ const navbarItems = [
   { ref: '/contact', label: 'Contact' },
 ];
 
-const StyledNavLink = ({
-  isActive,
-  className,
-  ...linkProps
-}: LinkProps & {
+const StyledNavLink = ({ isActive, className, ...linkProps }: LinkProps & {
   isActive: boolean;
   children: React.ReactNode;
   className?: string;
 }) => (
   <NavLink
-    className={`${className ?? ''} ${
-      isActive ? 'text-purple-site' : 'hover:text-purple-site'
+    className={`${className ?? ''} relative transition duration-300 ${
+      isActive
+        ? 'text-purple-600 font-semibold'
+        : 'hover:text-purple-600 text-gray-800'
     }`}
     {...linkProps}
-  />
+  >
+    {linkProps.children}
+    <span
+      className={`absolute left-0 -bottom-2 h-[2px] w-full bg-gradient-to-r from-pink-500 to-blue-500 transition-transform ${
+        isActive ? 'scale-x-100' : 'scale-x-0'
+      }`}
+    />
+  </NavLink>
 );
 
 export function NavBar() {
   const [isMenuShown, setIsMenuShown] = useState(false);
   const pathname = usePathname();
   const [linkRef, setLinkRef] = useState<LinkProps['href']>(pathname!);
-  const toggleOpen = useCallback(
-    () => setIsMenuShown(!isMenuShown),
-    [isMenuShown]
-  );
+
+  const toggleOpen = useCallback(() => setIsMenuShown(!isMenuShown), [isMenuShown]);
+
   return (
     <>
+      {/* Hamburger Menu (Mobile) */}
       <button
-        className="block md:hidden float-right relative z-50"
+        className="block md:hidden relative z-50 p-3"
         onClick={toggleOpen}
       >
-        <div className="space-y-2 absolute top-0 right-0 bg-purple-site p-3">
-          {(isMenuShown
-            ? [
-                'rotate-45 translate-y-[13px]',
-                'opacity-0 h-0',
-                '-rotate-45 translate-y-[-13px]',
-              ]
-            : ['', '', '']
-          ).map((className, index) => (
-            <span
-              key={index}
-              className={
-                'block h-[3px] w-6 bg-white transform transition duration-500 ease-in-out ' +
-                className
-              }
-            ></span>
-          ))}
+        <div className="space-y-2">
+          <span className={`block h-[3px] w-8 bg-black transition-all ${isMenuShown ? 'rotate-45 translate-y-[8px]' : ''}`} />
+          <span className={`block h-[3px] w-8 bg-black transition-all ${isMenuShown ? 'opacity-0' : ''}`} />
+          <span className={`block h-[3px] w-8 bg-black transition-all ${isMenuShown ? '-rotate-45 -translate-y-[8px]' : ''}`} />
         </div>
       </button>
+
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex items-center gap-8">
+        {navbarItems.map(({ ref, label }) => (
+          <StyledNavLink
+            key={ref}
+            isActive={ref === linkRef}
+            href={ref}
+            onClick={() => setLinkRef(ref)}
+            className="relative text-lg font-medium tracking-wide"
+          >
+            {label}
+          </StyledNavLink>
+        ))}
+      </nav>
+
+      {/* Mobile Menu */}
       <nav
-        className={`${
-          isMenuShown
-            ? 'max-md:w-full max-md:opacity-100'
-            : 'max-md:w-0 max-md:opacity-0'
-        } transition-all duration-500 ease-in-out md:block overflow-hidden max-md:absolute max-md:animate-sideways-once max-md:h-screen max-md:bg-white max-md:pt-24 z-40 top-0 right-0`}
+        className={`fixed inset-0 bg-white text-black flex flex-col items-center justify-center transform transition-transform ${
+          isMenuShown ? 'translate-x-0' : 'translate-x-full'
+        } md:hidden`}
       >
-        <ul className="flex flex-col items-center md:flex-row gap-10 md:gap-4 min-[900px]:gap-5 lg:gap-12 justify-end text-sm md:text-[15px] leading-[22px]">
+        <button onClick={toggleOpen} className="absolute top-6 right-6 text-4xl">&times;</button>
+        <ul className="space-y-8 text-2xl font-semibold">
           {navbarItems.map(({ ref, label }) => (
-            <li key={ref} className="relative">
+            <li key={ref}>
               <StyledNavLink
                 isActive={ref === linkRef}
                 href={ref}
@@ -80,10 +88,10 @@ export function NavBar() {
                   setLinkRef(ref);
                   setIsMenuShown(false);
                 }}
+                className="block text-center"
               >
                 {label}
               </StyledNavLink>
-              <span className="absolute -bottom-5 md:hidden border-b-2 w-48 left-[calc(50%_-_theme(space.24))]" />
             </li>
           ))}
         </ul>
