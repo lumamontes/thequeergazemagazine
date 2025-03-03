@@ -3,39 +3,37 @@ import testIds from '@app/utils/test-ids';
 import Image from "next/image";
 import Link from "next/link";
 
-// Import SVGs correctly
 import InstagramIcon from "@statics/social/mdi_instagram.svg";
 import TwitterIcon from "@statics/social/mdi_twitter.svg";
 import EmailIcon from "@statics/social/ic_baseline-email.svg";
 import TiktokIcon from "@statics/social/ic_baseline-tiktok.svg";
-// Define type for SocialLink
+
 type SocialLink = {
   alt: string;
   Icon: string;
   href: string;
 };
 
-// Define social links
 const links: SocialLink[] = [
   {
     alt: "Instagram",
     Icon: InstagramIcon,
-    href: "https://github.com/lumamontes/biblioteca-de-zines",
+    href: "www.instagram.com/queergazemag",
   },
   {
     alt: "Tiktok",
     Icon: TiktokIcon,
-    href: "https://github.com/lumamontes/biblioteca-de-zines",
+    href: "www.tiktok.com/queergazemag",
   },
   {
-    alt: "Twitter",
+    alt: "Bluesky",
     Icon: TwitterIcon,
-    href: "https://github.com/lumamontes/biblioteca-de-zines",
+    href: "https://bsky.app/profile/queergazemag.bsky.social",
   },
   {
     alt: "Email",
     Icon: EmailIcon,
-    href: "mailto:your@email.com",
+    href: "mailto:thequeergazelitmag@gmail.com",
   },
 ];
 

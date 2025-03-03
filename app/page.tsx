@@ -13,7 +13,7 @@ const navItems = [
 export default function Home() {
   return (
     <div className="w-full bg-black text-white flex flex-col items-center justify-center min-h-screen space-y-6 p-4">
-      <FloatingBadge title="ISSUE #2 AVAILABLE NOW" redirectUrl="/issues/2" />
+      <FloatingBadge />
       <Image
         src="/images/hero.png"
         alt="projects"
@@ -24,8 +24,8 @@ export default function Home() {
         }
         priority
       />
-      <h1 className="text-xl font-bold tracking-wide text-center">
-        LITERARY MAGAZINE EST 2025
+      <h1 className="text-xl font-bold tracking-wide text-center ">
+        LITERARY MAGAZINE EST 2023
       </h1>
 
       <nav>

@@ -13,7 +13,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-sans)'],
-        cursive: ['var(--font-milonga)'],
+        cursive: ['var(--font-cursive)'],
       },
       colors: {
         'pink-site': '#ED5EDD',

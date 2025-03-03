@@ -32,15 +32,13 @@ export default async function Project({ params }: any) {
         <p className="py-6 max-w-3xl text-sm mx-auto">
           {project.longDescription}
         </p>
-        <a href="" className="btn-main">
-          Donate
-        </a>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 grid-flow-row mt-10">
-          {project.gallery?.map((image: any, i: number) => (
+          {/* {project.gallery?.map((image: any, i: number) => (
             <div key={i} className="p-4 relative">
               <WixMediaImage media={image.src} width={500} />
             </div>
-          ))}
+          ))} */}
+          <iframe src={project.pdf} width={300}/>
         </div>
       </div>
     </div>
