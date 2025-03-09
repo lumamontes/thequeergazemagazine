@@ -1,8 +1,8 @@
-'use client';
+import { Metadata } from 'next';
 import './globals.css';
 import { Milonga, Roboto } from 'next/font/google';
+import { siteConfig } from './config/site';
 
-// Load Google Fonts (Milonga + Oswald)
 const milonga = Milonga({
   subsets: ['latin'],
   weight: ['400'],
@@ -15,6 +15,31 @@ const roboto = Roboto({
   display: 'swap',
   variable: '--font-sans',
 });
+
+export const metadata: Metadata = {
+  title: siteConfig.name,
+  description: siteConfig.description,
+  keywords: ['Queer', 'Magazine', 'Literary'],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: '/manifest/og.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [`${siteConfig.url}/manifest/og.png`],
+  },
+  icons: {
+    icon: { url: '/icon.svg', type: 'image/svg+xml' },
+  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
+};
 
 /**
  * Using force dynamic so changes in business assets (e.g. services) are immediately reflected.
