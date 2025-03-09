@@ -139,9 +139,9 @@ const About = () => {
               into neon colors, scattering mirrorball effervescence—saccharine,
               vicious, dauntless, and vulnerable. It trembles. It seethes with
               rage and fangs. It tiptoes into an arabesque of nuance. It is
-              rainbowy flamboyance with a mercurial wink. It's the grind of
-              teeth against shards. The Queer Gaze aims to be magnified in its
-              whole unapologetic queerness and acerbic glam.
+              rainbowy flamboyance with a mercurial wink. Its the grind of teeth
+              against shards. The Queer Gaze aims to be magnified in its whole
+              unapologetic queerness and acerbic glam.
             </p>
           </div>
         </div>
