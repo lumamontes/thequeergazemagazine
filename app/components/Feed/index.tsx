@@ -2,7 +2,7 @@ import Script from 'next/script';
 
 export default function Feed() {
   return (
-    <div className='bg-black'>
+    <div className="bg-black">
       <div id="substack-feed-embed"></div>
       {/* Inline configuration script */}
       <Script id="substack-config">
@@ -20,10 +20,10 @@ export default function Feed() {
       </Script>
 
       {/* External script for the feed widget */}
-      <Script 
-        src="https://substackapi.com/embeds/feed.js" 
-        strategy="lazyOnload" 
-        async 
+      <Script
+        src="https://substackapi.com/embeds/feed.js"
+        strategy="lazyOnload"
+        async
       />
     </div>
   );

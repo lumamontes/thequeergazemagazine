@@ -6,14 +6,16 @@ interface ProjectPageParams {
   slug: string;
 }
 
-export default async function ProjectPage({ params }: { params: ProjectPageParams }) {
+export default async function ProjectPage({
+  params,
+}: {
+  params: ProjectPageParams;
+}) {
   const wixClient = await getWixClient();
-  const { items } = await wixClient.items
-    .query('Our-Projects')
-    .find();
+  const { items } = await wixClient.items.query('Our-Projects').find();
 
   const slug = params.slug;
-  const project = items.filter(item => item.slug === slug)[0];
+  const project = items.filter((item) => item.slug === slug)[0];
 
   if (!project) {
     throw new Error('Project not found');

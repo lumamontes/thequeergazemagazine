@@ -6,10 +6,10 @@ const textVariants = {
   'pink-site': 'text-pink-site',
   'yellow-site': 'text-yellow-site',
   'lightgreen-site': 'text-lightgreen-site',
-  'red-site': 'text-red-site', 
+  'red-site': 'text-red-site',
 } as {
   [key: string]: string;
-}
+};
 
 const bgVariants = {
   'pink-site': 'bg-pink-site',
@@ -18,7 +18,7 @@ const bgVariants = {
   'red-site': 'bg-red-site',
 } as {
   [key: string]: string;
-}
+};
 
 export function NavItem({
   title,

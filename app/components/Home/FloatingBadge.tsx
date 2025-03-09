@@ -9,7 +9,7 @@ export function FloatingBadge() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ 
+      animate={{
         opacity: 1,
         y: [0, -10, 0],
         rotate: [10, 12, 10],
@@ -17,16 +17,16 @@ export function FloatingBadge() {
       transition={{
         y: {
           duration: 6,
-          ease: "easeInOut",
+          ease: 'easeInOut',
           repeat: Infinity,
-          repeatType: "reverse"
+          repeatType: 'reverse',
         },
         rotate: {
           duration: 6,
-          ease: "easeInOut",
+          ease: 'easeInOut',
           repeat: Infinity,
-          repeatType: "reverse"
-        }
+          repeatType: 'reverse',
+        },
       }}
       whileHover={{
         scale: 1.1,
@@ -57,21 +57,15 @@ export function FloatingBadge() {
         aria-label="View current issue"
       >
         {isHovered && (
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            <div
-              className="absolute w-full h-full rounded-full bg-yellow-site opacity-30 blur-xl"
-            />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute w-full h-full rounded-full bg-yellow-site opacity-30 blur-xl" />
           </div>
         )}
-        
+
         <span className="text-black font-bold text-xs sm:text-sm md:text-base text-center px-1">
           ISSUE #2
           <br />
-          <span
-            className={isHovered ? "text-amber-600" : "text-black"}
-          >
+          <span className={isHovered ? 'text-amber-600' : 'text-black'}>
             OUT NOW
           </span>
         </span>

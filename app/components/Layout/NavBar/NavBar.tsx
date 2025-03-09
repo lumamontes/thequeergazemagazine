@@ -13,7 +13,11 @@ const navbarItems = [
   { ref: '/contact', label: 'Contact' },
 ];
 
-const StyledNavLink = ({ isActive, className, ...linkProps }: LinkProps & {
+const StyledNavLink = ({
+  isActive,
+  className,
+  ...linkProps
+}: LinkProps & {
   isActive: boolean;
   children: React.ReactNode;
   className?: string;
@@ -40,7 +44,10 @@ export function NavBar() {
   const pathname = usePathname();
   const [linkRef, setLinkRef] = useState<LinkProps['href']>(pathname!);
 
-  const toggleOpen = useCallback(() => setIsMenuShown(!isMenuShown), [isMenuShown]);
+  const toggleOpen = useCallback(
+    () => setIsMenuShown(!isMenuShown),
+    [isMenuShown]
+  );
 
   return (
     <>
@@ -50,9 +57,21 @@ export function NavBar() {
         onClick={toggleOpen}
       >
         <div className="space-y-2">
-          <span className={`block h-[3px] w-8 bg-black transition-all ${isMenuShown ? 'rotate-45 translate-y-[8px]' : ''}`} />
-          <span className={`block h-[3px] w-8 bg-black transition-all ${isMenuShown ? 'opacity-0' : ''}`} />
-          <span className={`block h-[3px] w-8 bg-black transition-all ${isMenuShown ? '-rotate-45 -translate-y-[8px]' : ''}`} />
+          <span
+            className={`block h-[3px] w-8 bg-black transition-all ${
+              isMenuShown ? 'rotate-45 translate-y-[8px]' : ''
+            }`}
+          />
+          <span
+            className={`block h-[3px] w-8 bg-black transition-all ${
+              isMenuShown ? 'opacity-0' : ''
+            }`}
+          />
+          <span
+            className={`block h-[3px] w-8 bg-black transition-all ${
+              isMenuShown ? '-rotate-45 -translate-y-[8px]' : ''
+            }`}
+          />
         </div>
       </button>
 
@@ -77,7 +96,12 @@ export function NavBar() {
           isMenuShown ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
-        <button onClick={toggleOpen} className="absolute top-6 right-6 text-4xl">&times;</button>
+        <button
+          onClick={toggleOpen}
+          className="absolute top-6 right-6 text-4xl"
+        >
+          &times;
+        </button>
         <ul className="space-y-8 text-2xl font-semibold">
           {navbarItems.map(({ ref, label }) => (
             <li key={ref}>

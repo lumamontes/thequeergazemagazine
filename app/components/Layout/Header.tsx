@@ -10,12 +10,17 @@ import Image from 'next/image';
 // Pages that should always have black header (no transition)
 const DARK_HEADER_PAGES = ['/issues', '/submissions', '/blog'];
 
-function NavLink({title, href, active, variant}: {
-  title: string
-  href: string
-  active: boolean
-  variant: 'transparent' | 'dark'
-}){
+function NavLink({
+  title,
+  href,
+  active,
+  variant,
+}: {
+  title: string;
+  href: string;
+  active: boolean;
+  variant: 'transparent' | 'dark';
+}) {
   return (
     <Link href={href}>
       <motion.span
@@ -23,24 +28,24 @@ function NavLink({title, href, active, variant}: {
         className={`cursor-pointer ${
           active ? 'underline underline-offset-4' : ''
         } ${
-          variant === 'dark' 
-            ? 'text-white hover:text-gray-300' 
+          variant === 'dark'
+            ? 'text-white hover:text-gray-300'
             : 'text-gray-800 hover:text-black'
         } transition-colors duration-300`}
       >
         {title}
       </motion.span>
     </Link>
-  )
+  );
 }
 
 const Header = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   // Determine if this page should have the scroll effect
   const shouldHaveScrollEffect = !DARK_HEADER_PAGES.includes(pathname);
-  
+
   // Determine if we should start with dark header (either always dark or scrolled)
   const isDarkHeader = !shouldHaveScrollEffect || isScrolled;
 
@@ -56,7 +61,7 @@ const Header = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+
     // Set initial state based on current scroll position
     handleScroll();
 
@@ -78,9 +83,7 @@ const Header = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}
       className={`fixed px-6 md:px-12 py-4 w-full flex justify-between items-center text-lg font-light z-50 transition-all duration-300 ease-in-out ${
-        isDarkHeader 
-          ? 'bg-black shadow-md' 
-          : 'bg-transparent'
+        isDarkHeader ? 'bg-black shadow-md' : 'bg-transparent'
       }`}
     >
       <Link href="/">
@@ -96,28 +99,28 @@ const Header = () => {
       {/* Navigation */}
       <nav className="hidden sm:flex space-x-8">
         <NavLink
-          href='/about'
+          href="/about"
           active={isActiveTab('/about')}
           variant={navVariant}
-          title='About'
+          title="About"
         />
         <NavLink
-          href='/issues'
+          href="/issues"
           active={isActiveTab('/issues')}
           variant={navVariant}
-          title='Issues'
+          title="Issues"
         />
         <NavLink
-          href='/submissions'
+          href="/submissions"
           active={isActiveTab('/submissions')}
           variant={navVariant}
-          title='Submissions'
+          title="Submissions"
         />
         <NavLink
-          href='/blog'
+          href="/blog"
           active={isActiveTab('/blog')}
           variant={navVariant}
-          title='Blog'
+          title="Blog"
         />
       </nav>
 

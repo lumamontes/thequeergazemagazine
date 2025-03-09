@@ -135,14 +135,13 @@ const About = () => {
               emblazoning literary sensibility with a forefront telos of
               innovative storytelling. True to its name, queer, it splatters
               contrast against irony, crafting a paradoxical presence that
-              broadens writing into innovative ubiquitousness. Its gaze
-              refracts into neon colors, scattering mirrorball
-              effervescence—saccharine, vicious, dauntless, and vulnerable. It
-              trembles. It seethes with rage and fangs. It tiptoes into an
-              arabesque of nuance. It is rainbowy flamboyance with a mercurial
-              wink. It's the grind of teeth against shards. The Queer Gaze
-              aims to be magnified in its whole unapologetic queerness and
-              acerbic glam.
+              broadens writing into innovative ubiquitousness. Its gaze refracts
+              into neon colors, scattering mirrorball effervescence—saccharine,
+              vicious, dauntless, and vulnerable. It trembles. It seethes with
+              rage and fangs. It tiptoes into an arabesque of nuance. It is
+              rainbowy flamboyance with a mercurial wink. It's the grind of
+              teeth against shards. The Queer Gaze aims to be magnified in its
+              whole unapologetic queerness and acerbic glam.
             </p>
           </div>
         </div>
@@ -215,7 +214,7 @@ const About = () => {
             <motion.div
               initial={{ y: 20, scale: 1.1 }}
               whileInView={{ y: 0, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              transition={{ duration: 1, ease: 'easeOut' }}
               viewport={{ once: true }}
               className="relative w-full h-[500px] overflow-hidden"
             >
