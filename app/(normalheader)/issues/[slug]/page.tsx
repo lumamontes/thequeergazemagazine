@@ -1,6 +1,8 @@
 import { getWixClient } from '@app/hooks/useWixClientServer';
 import Issue from '@app/components/Issue';
 import { siteConfig } from '@app/config/site';
+import { PLACEHOLDER_IMAGE } from '@app/constants';
+import { getImageUrlForMedia } from '@app/components/Image/WixMediaImage';
 
 // Define the params interface
 interface ProjectPageParams {
@@ -26,6 +28,10 @@ export async function generateMetadata({
     };
   }
 
+  const imageUrl = project.cover
+    ? getImageUrlForMedia(project.cover || '', 1200, 630)
+    : PLACEHOLDER_IMAGE;
+
   return {
     title: project.title,
     description: project.short_description,
@@ -34,7 +40,7 @@ export async function generateMetadata({
       description: project.short_description,
       images: [
         {
-          url: project.cover,
+          url: imageUrl,
           width: 1200,
           height: 630,
         },
@@ -48,7 +54,7 @@ export async function generateMetadata({
       description: project.short_description,
       images: [
         {
-          url: project.cover,
+          url: imageUrl,
           width: 1200,
           height: 630,
         },

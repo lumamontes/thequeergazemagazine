@@ -27,13 +27,12 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: '/manifest/og.png',
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/manifest/og.png`],
+    images: [siteConfig.ogImage],
   },
   icons: {
     icon: { url: '/icon.svg', type: 'image/svg+xml' },
