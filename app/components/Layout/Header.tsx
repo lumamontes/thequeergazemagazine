@@ -2,18 +2,19 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Import usePathname
+import { usePathname } from 'next/navigation';
 import MobileMenu from './MobileMenu';
 import { useEffect, useState } from 'react';
-import { Logo } from '../Logo/Logo';
 import Image from 'next/image';
 
+// Pages that should always have black header (no transition)
+const DARK_HEADER_PAGES = ['/issues', '/submissions', '/blog'];
 
-function NavLink({title, href, active, scrolled}: {
+function NavLink({title, href, active, variant}: {
   title: string
   href: string
-  active: boolean,
-  scrolled: boolean
+  active: boolean
+  variant: 'transparent' | 'dark'
 }){
   return (
     <Link href={href}>
@@ -21,30 +22,31 @@ function NavLink({title, href, active, scrolled}: {
         whileHover={{ scale: 1.05 }}
         className={`cursor-pointer ${
           active ? 'underline underline-offset-4' : ''
-        }
-
-        ${
-          scrolled ? ' text-pink-site' : ' text-gray-800 hover:text-black'
-        }
-        
-        `}
+        } ${
+          variant === 'dark' 
+            ? 'text-white hover:text-gray-300' 
+            : 'text-gray-800 hover:text-black'
+        } transition-colors duration-300`}
       >
         {title}
       </motion.span>
     </Link>
-
   )
 }
 
-const Header = ({scroll = true}: {
-  scroll?: boolean
-}) => {
+const Header = () => {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(!scroll ? true : false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Determine if this page should have the scroll effect
+  const shouldHaveScrollEffect = !DARK_HEADER_PAGES.includes(pathname);
+  
+  // Determine if we should start with dark header (either always dark or scrolled)
+  const isDarkHeader = !shouldHaveScrollEffect || isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
-      if(scroll){
+      if (shouldHaveScrollEffect) {
         if (window.scrollY > 50) {
           setIsScrolled(true);
         } else {
@@ -54,30 +56,40 @@ const Header = ({scroll = true}: {
     };
 
     window.addEventListener('scroll', handleScroll);
+    
+    // Set initial state based on current scroll position
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [pathname, shouldHaveScrollEffect]);
 
   const isActiveTab = (path: string) => {
     return pathname === path;
   };
 
+  // Determine the current nav link variant
+  const navVariant = isDarkHeader ? 'dark' : 'transparent';
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-      className={`fixed  px-6 md:px-12 py-2 w-full flex justify-between items-center text-lg font-light z-50 transition-all duration-300 ease-in-out 
-        ${isScrolled ? 'bg-black shadow-lg' : 'bg-transparent'}`}
+      transition={{ duration: 0.7 }}
+      className={`fixed px-6 md:px-12 py-4 w-full flex justify-between items-center text-lg font-light z-50 transition-all duration-300 ease-in-out ${
+        isDarkHeader 
+          ? 'bg-black shadow-md' 
+          : 'bg-transparent'
+      }`}
     >
       <Link href="/">
         <Image
           src="/images/logo.png"
           width={100}
-          height={100}
+          height={60}
           alt="Queer Gaze Magazine logo!"
+          className="transition-opacity duration-300"
         />
       </Link>
 
@@ -86,32 +98,30 @@ const Header = ({scroll = true}: {
         <NavLink
           href='/about'
           active={isActiveTab('/about')}
-          scrolled={isScrolled}
+          variant={navVariant}
           title='About'
         />
         <NavLink
           href='/issues'
           active={isActiveTab('/issues')}
-          scrolled={isScrolled}
+          variant={navVariant}
           title='Issues'
         />
         <NavLink
           href='/submissions'
           active={isActiveTab('/submissions')}
-          scrolled={isScrolled}
+          variant={navVariant}
           title='Submissions'
         />
         <NavLink
           href='/blog'
           active={isActiveTab('/blog')}
-          scrolled={isScrolled}
+          variant={navVariant}
           title='Blog'
         />
       </nav>
 
-      <MobileMenu 
-        scrolled={isScrolled}
-      />
+      <MobileMenu scrolled={isDarkHeader} />
     </motion.header>
   );
 };

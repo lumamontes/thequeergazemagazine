@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react';
 import { getWixClient } from '@app/hooks/useWixClientServer';
 import Image from 'next/image';
 
-
 const QuotedText = ({ children }: { children: React.ReactNode }) => (
-  <blockquote className="text-4xl mx-auto max-w-2xl text-center flex flex-col">
+  <blockquote className="text-2xl mx-auto max-w-2xl text-center flex flex-col">
     <Image
       src={'/images/about/leftquote.png'}
       alt="Left quote icon"
@@ -36,7 +35,7 @@ const TeamMemberCard = ({ name, image, about, position }: any) => (
     transition={{ duration: 0.5 }}
     className="p-4 relative"
   >
-    <div className="w-full h-[220px] relative  overflow-hidden">
+    <div className="w-full h-[220px] relative overflow-hidden">
       <Image
         src={'/images/placeholder.jpg'}
         alt={name}
@@ -45,7 +44,7 @@ const TeamMemberCard = ({ name, image, about, position }: any) => (
         className="object-cover object-center"
       />
     </div>
-    <div className="bg-white sm:mt-[-48px] border-t-4 relative mx-6 px-4 pt-6 pb-4 border-pink-site text-center  shadow-md">
+    <div className="bg-white sm:mt-[-48px] border-t-4 relative mx-6 px-4 pt-6 pb-4 border-pink-site text-center shadow-md">
       <h3 className="mb-4 font-site text-xl">{name}</h3>
       <p className="text-sm mb-4">{about}</p>
       <span className="text-blue-500">{position}</span>
@@ -75,18 +74,18 @@ const About = () => {
     <div
       className={`transition-all duration-700 ${
         isLoaded ? 'bg-pink-site' : 'bg-black'
-      } py-8`}
+      }`}
     >
       {/* About Content */}
       <motion.section
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="mx-auto px-6 sm:px-12  mt-16 text-center bg-black text-white  shadow-lg"
+        className="mx-auto px-6 sm:px-12 text-center bg-black text-white"
       >
-        <div className="mx-auto flex flex-col md:flex-row items-center gap-8">
+        <div className="mx-auto flex flex-col md:flex-row items-center">
           {/* Left Text Section */}
-          <div className="w-full pt-4 md:pt-0 md:w-1/2 ">
+          <div className="w-full pt-4 md:pt-0 md:w-1/2 p-8">
             <QuotedText>
               The Queer Gaze is a non-profit indie magazine for the queers with
               overlined lips, gender-benders in ripped fishnet stockings,
@@ -98,17 +97,14 @@ const About = () => {
             </QuotedText>
           </div>
           {/* Right Image Section */}
-          <div className="w-full md:w-1/2 h-96 md:h-full  flex">
-            <div className=" w-full  md:h-full flex">
-              <Image
-                src="/images/about/divine.png"
-                alt="The Queer Gaze Magazine"
-                objectFit="cover"
-                className=""
-                width={1200}
-                height={1200}
-              />
-            </div>
+          <div className="w-full md:w-1/2">
+            <Image
+              src="/images/about/divine.png"
+              alt="The Queer Gaze Magazine"
+              width={500}
+              height={550}
+              className="w-full object-cover"
+            />
           </div>
         </div>
       </motion.section>
@@ -117,40 +113,37 @@ const About = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="mx-auto px-6 sm:px-12 py-12 md:py-6 text-center bg-pink-site text-white  shadow-lg"
+        className="mx-auto bg-pink-site text-white"
       >
-        <div className="mx-auto flex flex-col md:flex-row items-center gap-8">
-          {/* Left Text Section */}
-          <div className="w-full md:w-1/2">
+        <div className="mx-auto flex flex-col md:flex-row items-center">
+          {/* Left Image Section */}
+          <div className="w-full md:w-1/2 pl-0 md:pl-12">
             <Image
               src="/images/about/about.png"
               alt="The Queer Gaze Magazine"
-              objectFit="cover"
-              className=""
-              width={1200}
-              height={1200}
+              width={500}
+              height={500}
+              className="w-full"
             />
           </div>
-          {/* Right Image Section */}
-          <div className="w-full md:w-1/2 md:h-full flex">
-            <div className=" w-full  md:h-full flex">
-              <p className="text-base md:text-2xl">
-                The
-                <span className="font-cursive"> Queer Gaze </span>
-                is an experimental fusion of the eccentric and eclectic,
-                emblazoning literary sensibility with a forefront telos of
-                innovative storytelling. True to its name, queer, it splatters
-                contrast against irony, crafting a paradoxical presence that
-                broadens writing into innovative ubiquitousness. Its gaze
-                refracts into neon colors, scattering mirrorball
-                effervescence—saccharine, vicious, dauntless, and vulnerable. It
-                trembles. It seethes with rage and fangs. It tiptoes into an
-                arabesque of nuance. It is rainbowy flamboyance with a mercurial
-                wink. It’s the grind of teeth against shards. The Queer Gaze
-                aims to be magnified in its whole unapologetic queerness and
-                acerbic glam.
-              </p>
-            </div>
+          {/* Right Text Section */}
+          <div className="w-full md:w-1/2 p-8 md:p-12">
+            <p className="text-base md:text-lg leading-relaxed">
+              The
+              <span className="font-cursive"> Queer Gaze </span>
+              is an experimental fusion of the eccentric and eclectic,
+              emblazoning literary sensibility with a forefront telos of
+              innovative storytelling. True to its name, queer, it splatters
+              contrast against irony, crafting a paradoxical presence that
+              broadens writing into innovative ubiquitousness. Its gaze
+              refracts into neon colors, scattering mirrorball
+              effervescence—saccharine, vicious, dauntless, and vulnerable. It
+              trembles. It seethes with rage and fangs. It tiptoes into an
+              arabesque of nuance. It is rainbowy flamboyance with a mercurial
+              wink. It's the grind of teeth against shards. The Queer Gaze
+              aims to be magnified in its whole unapologetic queerness and
+              acerbic glam.
+            </p>
           </div>
         </div>
       </motion.section>
@@ -159,7 +152,7 @@ const About = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative w-full py-16 bg-black text-white px-6 sm:px-12"
+        className="relative w-full py-12 bg-black text-white px-6 sm:px-12"
       >
         {/* Main Container */}
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row relative">
@@ -178,8 +171,8 @@ const About = () => {
             </div>
 
             {/* Text Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <p className="max-w-[450px] text-sm leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <p className="text-xs leading-relaxed">
                 The Queer Gaze was originally titled Legibitiqua, a coined
                 pop-culture slang with a French-esque, morphological play on
                 LGBTQ+. Its initial aim was to evoke the token celebratory
@@ -189,7 +182,7 @@ const About = () => {
                 of having rainbows tattooed on your identity, and all the
                 splinters and shatters that collectively form *queerness*.
               </p>
-              <p className="max-w-[450px] text-sm leading-relaxed">
+              <p className="text-xs leading-relaxed">
                 Legibitiqua eventually metamorphosed into The Queer Gaze, a
                 decision of expansion—a meteorite awakening, rummaging through
                 the diverse stories of minorities and the marginalized. This
@@ -198,7 +191,7 @@ const About = () => {
                 monstrous. The only way to understand this lived experience is
                 by looking through the queer gaze.
               </p>
-              <p className="max-w-[450px] text-sm leading-relaxed">
+              <p className="text-xs leading-relaxed">
                 Our literary magazine aims to exemplify spectral voices,
                 champion inclusivity in all its facets, and unearth stories
                 waiting to sprout from dormancy. It is a punk-Frankenstein with
@@ -207,7 +200,7 @@ const About = () => {
                 literary existence from minoritized communities and marginalized
                 spaces.
               </p>
-              <p className="max-w-[450px] text-sm leading-relaxed">
+              <p className="text-xs leading-relaxed">
                 Inspired by trailblazing theories of gender and identity, The
                 Queer Gaze aspires to be ferocious shrapnel against the
                 barricades of oppression—a glitter-spiked voice for the
@@ -219,22 +212,21 @@ const About = () => {
 
           {/* Right Image (Gloves) */}
           <div className="w-full md:w-1/3 relative">
-          <motion.div
-  initial={{ y: 20, scale: 1.1 }}
-  whileInView={{ y: 0, scale: 1 }}
-  transition={{ duration: 1, ease: "easeOut" }}
-  viewport={{ once: true }}
-  className="relative w-full h-[500px] overflow-hidden"
->
-  <Image
-    src="/images/about/gloves.png"
-    alt="Gloves Image"
-    width={600}
-    height={800}
-    className="absolute right-0 top-1/2 -translate-y-1/2 scale-125"
-  />
-</motion.div>
-
+            <motion.div
+              initial={{ y: 20, scale: 1.1 }}
+              whileInView={{ y: 0, scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="relative w-full h-[500px] overflow-hidden"
+            >
+              <Image
+                src="/images/about/gloves.png"
+                alt="Gloves Image"
+                width={600}
+                height={800}
+                className="absolute right-0 top-1/2 -translate-y-1/2 scale-125"
+              />
+            </motion.div>
           </div>
         </div>
       </motion.section>
@@ -255,7 +247,7 @@ const About = () => {
             className="object-cover object-center"
           />
         </div>
-        <div className="max-w-7xl mx-auto mt-[-120px] relative bg-white px-8 sm:px-20 py-12  shadow-lg">
+        <div className="max-w-7xl mx-auto mt-[-120px] relative bg-white px-8 sm:px-20 py-12 shadow-lg">
           <SectionTitle>Our team</SectionTitle>
           <p className="pt-6 max-w-3xl text-sm text-center mx-auto">
             Meet the staff

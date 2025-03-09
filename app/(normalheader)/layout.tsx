@@ -5,10 +5,10 @@ export default function WithHeaderLayout({ children }: { children: React.ReactNo
   return (
     <div className="flex flex-col min-h-screen bg-white text-black">
       {/* Header */}
-      <Header scroll={false} />
+      <Header />
 
       {/* Page Content */}
-      <main className="flex-grow w-full ">
+      <main className="flex-grow w-full pt-24 bg-black">
         {children}
       </main>
 

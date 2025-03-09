@@ -2,9 +2,8 @@ import Script from 'next/script';
 
 export default function Feed() {
   return (
-    <>
+    <div className='bg-black'>
       <div id="substack-feed-embed"></div>
-      
       {/* Inline configuration script */}
       <Script id="substack-config">
         {`
@@ -26,6 +25,6 @@ export default function Feed() {
         strategy="lazyOnload" 
         async 
       />
-    </>
+    </div>
   );
 }
